@@ -24,6 +24,7 @@
 		3EC687231947472000886B58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EC687211947472000886B58 /* InfoPlist.strings */; };
 		3EC687251947472000886B58 /* DracTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC687241947472000886B58 /* DracTests.m */; };
 		A14E113019474EC000184203 /* Navajo_Mountain_Range.png in Resources */ = {isa = PBXBuildFile; fileRef = A14E112F19474EC000184203 /* Navajo_Mountain_Range.png */; };
+		A14E1133194750AA00184203 /* PlayerDrac.m in Sources */ = {isa = PBXBuildFile; fileRef = A14E1132194750AA00184203 /* PlayerDrac.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		3EC687221947472000886B58 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3EC687241947472000886B58 /* DracTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DracTests.m; sourceTree = "<group>"; };
 		A14E112F19474EC000184203 /* Navajo_Mountain_Range.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navajo_Mountain_Range.png; sourceTree = "<group>"; };
+		A14E1131194750AA00184203 /* PlayerDrac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerDrac.h; sourceTree = "<group>"; };
+		A14E1132194750AA00184203 /* PlayerDrac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerDrac.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,8 @@
 		3EC686E61947471F00886B58 = {
 			isa = PBXGroup;
 			children = (
+				A14E1131194750AA00184203 /* PlayerDrac.h */,
+				A14E1132194750AA00184203 /* PlayerDrac.m */,
 				3EC686FA1947471F00886B58 /* Drac */,
 				3EC6871E1947472000886B58 /* DracTests */,
 				3EC686F11947471F00886B58 /* Frameworks */,
@@ -270,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A14E1133194750AA00184203 /* PlayerDrac.m in Sources */,
 				3EC6870E1947472000886B58 /* MyScene.m in Sources */,
 				3EC6870B1947472000886B58 /* ViewController.m in Sources */,
 				3EC687051947472000886B58 /* AppDelegate.m in Sources */,

@@ -9,6 +9,4 @@
 
 @interface MyScene : SKScene
 
-
-
 @end
