@@ -11,6 +11,6 @@
 
 @interface PlayerDrac : NSObject
 
-@property SKSpriteNode *playerDrac;
+@property SKSpriteNode *dragao;
 
 @end

@@ -25,6 +25,7 @@
 		3EC687251947472000886B58 /* DracTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC687241947472000886B58 /* DracTests.m */; };
 		A14E113019474EC000184203 /* Navajo_Mountain_Range.png in Resources */ = {isa = PBXBuildFile; fileRef = A14E112F19474EC000184203 /* Navajo_Mountain_Range.png */; };
 		A14E1133194750AA00184203 /* PlayerDrac.m in Sources */ = {isa = PBXBuildFile; fileRef = A14E1132194750AA00184203 /* PlayerDrac.m */; };
+		A14E11351947520100184203 /* Dragao.png in Resources */ = {isa = PBXBuildFile; fileRef = A14E11341947520100184203 /* Dragao.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,8 +62,9 @@
 		3EC687221947472000886B58 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3EC687241947472000886B58 /* DracTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DracTests.m; sourceTree = "<group>"; };
 		A14E112F19474EC000184203 /* Navajo_Mountain_Range.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navajo_Mountain_Range.png; sourceTree = "<group>"; };
-		A14E1131194750AA00184203 /* PlayerDrac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerDrac.h; sourceTree = "<group>"; };
-		A14E1132194750AA00184203 /* PlayerDrac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerDrac.m; sourceTree = "<group>"; };
+		A14E1131194750AA00184203 /* PlayerDrac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerDrac.h; path = ../PlayerDrac.h; sourceTree = "<group>"; };
+		A14E1132194750AA00184203 /* PlayerDrac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerDrac.m; path = ../PlayerDrac.m; sourceTree = "<group>"; };
+		A14E11341947520100184203 /* Dragao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dragao.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +95,6 @@
 		3EC686E61947471F00886B58 = {
 			isa = PBXGroup;
 			children = (
-				A14E1131194750AA00184203 /* PlayerDrac.h */,
-				A14E1132194750AA00184203 /* PlayerDrac.m */,
 				3EC686FA1947471F00886B58 /* Drac */,
 				3EC6871E1947472000886B58 /* DracTests */,
 				3EC686F11947471F00886B58 /* Frameworks */,
@@ -126,6 +126,8 @@
 		3EC686FA1947471F00886B58 /* Drac */ = {
 			isa = PBXGroup;
 			children = (
+				A14E1131194750AA00184203 /* PlayerDrac.h */,
+				A14E1132194750AA00184203 /* PlayerDrac.m */,
 				A14E112E19474E6B00184203 /* Sprites */,
 				3EC687031947472000886B58 /* AppDelegate.h */,
 				3EC687041947472000886B58 /* AppDelegate.m */,
@@ -172,6 +174,7 @@
 		A14E112E19474E6B00184203 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				A14E11341947520100184203 /* Dragao.png */,
 				A14E112F19474EC000184203 /* Navajo_Mountain_Range.png */,
 			);
 			name = Sprites;
@@ -254,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EC686FF1947471F00886B58 /* InfoPlist.strings in Resources */,
+				A14E11351947520100184203 /* Dragao.png in Resources */,
 				A14E113019474EC000184203 /* Navajo_Mountain_Range.png in Resources */,
 				3EC687121947472000886B58 /* Images.xcassets in Resources */,
 				3EC687081947472000886B58 /* Main.storyboard in Resources */,

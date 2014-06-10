@@ -7,7 +7,23 @@
 //
 
 #import "PlayerDrac.h"
+#import <SpriteKit/SpriteKit.h>
+
 
 @implementation PlayerDrac
+
+//Criar o Sprite do dragao
+dragao = [SKSpriteNode spriteNodeWithImageNamed:@"Dragao.png"];
+
+//Criar corpo fisico
+dragao.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.dragaoDrac.size.width / 2];
+
+// Nao permite o corpo fisico movimentar a Sprite
+dragao.physicsBody.dynamic = NO;
+
+// Faz o corpo ser afetado pela gravidade
+dragao.physicsBody.affectedByGravity = YES;
+
+
 
 @end
