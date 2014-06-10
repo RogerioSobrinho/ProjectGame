@@ -2,7 +2,6 @@
 //  MyScene.h
 //  Drac
 //
-
 //  Copyright (c) 2014 ROGERIO ALVES SOBRINHO. All rights reserved.
 //
 

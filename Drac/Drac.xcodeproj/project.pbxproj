@@ -23,6 +23,7 @@
 		3EC6871B1947472000886B58 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC686F61947471F00886B58 /* UIKit.framework */; };
 		3EC687231947472000886B58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EC687211947472000886B58 /* InfoPlist.strings */; };
 		3EC687251947472000886B58 /* DracTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC687241947472000886B58 /* DracTests.m */; };
+		A14E113019474EC000184203 /* Navajo_Mountain_Range.png in Resources */ = {isa = PBXBuildFile; fileRef = A14E112F19474EC000184203 /* Navajo_Mountain_Range.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		3EC687201947472000886B58 /* DracTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DracTests-Info.plist"; sourceTree = "<group>"; };
 		3EC687221947472000886B58 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3EC687241947472000886B58 /* DracTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DracTests.m; sourceTree = "<group>"; };
+		A14E112F19474EC000184203 /* Navajo_Mountain_Range.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navajo_Mountain_Range.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 		3EC686FA1947471F00886B58 /* Drac */ = {
 			isa = PBXGroup;
 			children = (
+				A14E112E19474E6B00184203 /* Sprites */,
 				3EC687031947472000886B58 /* AppDelegate.h */,
 				3EC687041947472000886B58 /* AppDelegate.m */,
 				3EC687061947472000886B58 /* Main.storyboard */,
@@ -159,6 +162,14 @@
 				3EC687211947472000886B58 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A14E112E19474E6B00184203 /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				A14E112F19474EC000184203 /* Navajo_Mountain_Range.png */,
+			);
+			name = Sprites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EC686FF1947471F00886B58 /* InfoPlist.strings in Resources */,
+				A14E113019474EC000184203 /* Navajo_Mountain_Range.png in Resources */,
 				3EC687121947472000886B58 /* Images.xcassets in Resources */,
 				3EC687081947472000886B58 /* Main.storyboard in Resources */,
 			);
@@ -472,6 +484,7 @@
 				3EC6872A1947472000886B58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3EC6872B1947472000886B58 /* Build configuration list for PBXNativeTarget "DracTests" */ = {
 			isa = XCConfigurationList;
@@ -480,6 +493,7 @@
 				3EC6872D1947472000886B58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
