@@ -25,6 +25,8 @@
 		3EC687251947472000886B58 /* DracTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC687241947472000886B58 /* DracTests.m */; };
 		A14E113019474EC000184203 /* Navajo_Mountain_Range.png in Resources */ = {isa = PBXBuildFile; fileRef = A14E112F19474EC000184203 /* Navajo_Mountain_Range.png */; };
 		A14E11351947520100184203 /* Dragao.png in Resources */ = {isa = PBXBuildFile; fileRef = A14E11341947520100184203 /* Dragao.png */; };
+		A19B2C551948946C00483981 /* essa.fw.png in Resources */ = {isa = PBXBuildFile; fileRef = A19B2C541948946C00483981 /* essa.fw.png */; };
+		A19B2C571948947400483981 /* 613354.png in Resources */ = {isa = PBXBuildFile; fileRef = A19B2C561948947400483981 /* 613354.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		3EC687241947472000886B58 /* DracTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DracTests.m; sourceTree = "<group>"; };
 		A14E112F19474EC000184203 /* Navajo_Mountain_Range.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navajo_Mountain_Range.png; sourceTree = "<group>"; };
 		A14E11341947520100184203 /* Dragao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dragao.png; sourceTree = "<group>"; };
+		A19B2C541948946C00483981 /* essa.fw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = essa.fw.png; sourceTree = "<group>"; };
+		A19B2C561948947400483981 /* 613354.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 613354.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,8 @@
 		A14E112E19474E6B00184203 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				A19B2C561948947400483981 /* 613354.png */,
+				A19B2C541948946C00483981 /* essa.fw.png */,
 				A14E11341947520100184203 /* Dragao.png */,
 				A14E112F19474EC000184203 /* Navajo_Mountain_Range.png */,
 			);
@@ -251,11 +257,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A19B2C571948947400483981 /* 613354.png in Resources */,
 				3EC686FF1947471F00886B58 /* InfoPlist.strings in Resources */,
 				A14E11351947520100184203 /* Dragao.png in Resources */,
 				A14E113019474EC000184203 /* Navajo_Mountain_Range.png in Resources */,
 				3EC687121947472000886B58 /* Images.xcassets in Resources */,
 				3EC687081947472000886B58 /* Main.storyboard in Resources */,
+				A19B2C551948946C00483981 /* essa.fw.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
