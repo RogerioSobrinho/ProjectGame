@@ -10,21 +10,30 @@
 
 @implementation MyScene
 
--(id)initWithSize:(CGSize)size {    
+-(id)initWithSize:(CGSize)size {
+    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+
+        //Criar o Sprite do dragao
+        self.dragao = [SKSpriteNode spriteNodeWithImageNamed:@"Dragao.png"];
         
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        //Criar corpo fisico
+        self.dragao.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.dragao.size.width / 2];
         
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
+        // Nao permite o corpo fisico movimentar a Sprite
+        self.dragao.physicsBody.dynamic = NO;
         
-        [self addChild:myLabel];
-    
+        // Faz o corpo ser afetado pela gravidade
+        self.dragao.physicsBody.affectedByGravity = YES;
+        
+        //Para o corpo nao girar
+        self.dragao.physicsBody.allowsRotation = NO;
+        self.dragao.physicsBody.density = 0.65f;
+        
+   
+        [self addChild:self.dragao];
         
     }
     return self;

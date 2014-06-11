@@ -7,6 +7,11 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface MyScene : SKScene
+
+@interface MyScene : SKScene <SKPhysicsContactDelegate>
+
+
+@property SKSpriteNode *dragao;
+
 
 @end
