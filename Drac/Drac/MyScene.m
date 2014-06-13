@@ -14,45 +14,62 @@
     
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
+    
+        self.physicsWorld.contactDelegate=self;
         
- 
         
-        //Criar fundo de tela
-        self.fundo = [SKSpriteNode spriteNodeWithImageNamed:@"613354.png"];
+        // Criar fundo de tela
+        SKSpriteNode *fundo = [SKSpriteNode spriteNodeWithImageNamed:@"613354.png"];
         
         //Coloca -15 para a sprite ficar no fundo
-        self.fundo.zPosition = -15;
-        self.fundo.position = CGPointMake(self.size.width/3, self.size.height/3);
+        fundo.zPosition = -15;
+        fundo.position = CGPointMake(self.size.width/2, self.size.height/2);
         
         //adicionar fundo
-        [self addChild:self.fundo];
+        [self addChild:fundo];
+        
+        //Configura a gravidade
+        self.physicsWorld.gravity=CGVectorMake(0.0f, -0.5f);
+        
+        //Cria muros na scene
+        //SKPhysicsBody *BordaTela = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+        
+        //Corpo fisico da cena
+        //self.physicsBody=BordaTela;
         
         
         
-        //criar frames do dragao
-        self.dragaoFrames = [self carregarSprites:@"essa.fw.png"withNumberOfSprites:8 withNumberOfRows:2 withNumberOfSpritesPerRow:4];
+        //Cria o chao
+        CGRect chaoRect = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 1);
+        SKNode *chao = [SKNode node];
+        chao.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:chaoRect];
+        [self addChild:chao];
+
+        //Cria o chao
+        CGRect tetoRect = CGRectMake(self.frame.origin.x, self.frame.size.height, self.frame.size.width, 1);
+        SKNode *teto = [SKNode node];
+        teto.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:tetoRect];
+        [self addChild:teto];
         
-        [self.dragao setSize:CGSizeMake(50, 49)];
-        
-        self.dragao.xScale =-self.dragao.xScale;
         
         
-        //Criar o Sprite do dragao
+        //02 Criar o Sprite do dragao
         self.dragao = [SKSpriteNode spriteNodeWithImageNamed:@"essa.fw.png"];
 
+        //criar frames do dragao
+        self.dragaoFrames = [self carregarSprites:@"essa.fw.png" withNumberOfSprites:8 withNumberOfRows:2 withNumberOfSpritesPerRow:4];
+        
+        [self.dragao setSize:CGSizeMake(50.0f, 49.0f)];
         
         //Posicionamento do dragao na tela(no jogo)
-        self.dragao.position = CGPointMake(self.size.width / 3, self.size.height / 2);
+        self.dragao.position = CGPointMake(self.size.width / 5, self.size.height / 2);
         self.dragao.zRotation = 0;
         
-        
         //Criacao da Animacao
-        SKAction *dragaoAnimado = [SKAction animateWithTextures:self.dragaoFrames timePerFrame:0.05f];
+        SKAction *dragaoAnimado = [SKAction animateWithTextures:self.dragaoFrames timePerFrame:0.08f];
         
         //Animacao
         [self.dragao runAction:[SKAction repeatActionForever:dragaoAnimado]];
-        
-        
         
         //Criar corpo fisico
         self.dragao.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.dragao.size.width/2];
@@ -61,21 +78,52 @@
         self.dragao.physicsBody.dynamic = NO;
         
         // Faz o corpo ser afetado pela gravidade
-        self.dragao.physicsBody.affectedByGravity = YES;
+        self.dragao.physicsBody.affectedByGravity = NO;
         
         //Para o corpo nao girar
         self.dragao.physicsBody.allowsRotation = NO;
         self.dragao.physicsBody.density = 0.65f;
         
         //Elasticidade do corpo
-        self.dragao.physicsBody.restitution = 1;
+        self.dragao.physicsBody.restitution = 0.0f;
         
-    
+        //friccao
+        self.dragao.physicsBody.friction =0.0f;
+        
         //adicionar o dragao na tela
         [self addChild:self.dragao];
         
+        
+        
+        
+        //Define CategoryBitMask
+        self.dragao.physicsBody.categoryBitMask = dragaoCategory;
+        self.flecha.physicsBody.categoryBitMask = flechaCategory;
+        self.diamante.physicsBody.categoryBitMask = diamanteCategory;
+    
+        //Define Qual CategoryBitMask colide com qual
+        self.dragao.physicsBody.contactTestBitMask = flechaCategory;
+        self.dragao.physicsBody.contactTestBitMask = diamanteCategory;
+        
     }
     return self;
+}
+
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch *touch in touches)
+    {
+        
+        //Faz o corpo do dragao ficar dinamico
+        self.dragao.physicsBody.dynamic = YES;
+        //Introduz gravidade
+        self.dragao.physicsBody.affectedByGravity = YES;
+        //Da impulso vertical para cima
+        [self.dragao.physicsBody applyImpulse:CGVectorMake(0, 5)];
+
+        
+    }
 }
 
 
