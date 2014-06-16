@@ -13,9 +13,16 @@ static const UInt32 diamanteCategory = 0x1 << 2;
 #import <SpriteKit/SpriteKit.h>
 
 @interface MyScene : SKScene <SKPhysicsContactDelegate>
+{
+    double flechaTimer;
+}
 
-@property SKSpriteNode *dragao;
+@property (nonatomic) NSTimeInterval ultimoSpawnDiamante;
+@property (nonatomic) NSTimeInterval ultimoSpawnTimeInterval;
+@property (nonatomic) NSTimeInterval ultimoUpdateTimeInterval;
+
 @property SKSpriteNode *flecha;
+@property SKSpriteNode *dragao;
 @property SKSpriteNode *diamante;
 //@property SKSpriteNode *chao;
 
