@@ -24,7 +24,10 @@ static const UInt32 diamanteCategory = 0x1 << 2;
 @property SKSpriteNode *flecha;
 @property SKSpriteNode *dragao;
 @property SKSpriteNode *diamante;
-//@property SKSpriteNode *chao;
+
+@property int vida;
+@property int pontos;
+@property SKLabelNode *pontuacao;
 
 
 @property NSArray *dragaoFrames;

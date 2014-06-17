@@ -34,6 +34,8 @@
         [self addChild:fundo];
         
     
+        //comeca com 3 de vida
+        self.vida = 3;
         
         //Cria o chao
         CGRect chaoRect = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 1);
@@ -47,6 +49,17 @@
         teto.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:tetoRect];
         [self addChild:teto];
         
+        
+        //Faz a pontuacao e mostra na tela
+        self.pontos = 0;
+        self.pontuacao = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE-Regular"];
+        self.pontuacao.position = CGPointMake(self.size.width/2, self.size.height - 150);
+        self.pontuacao.text = [NSString stringWithFormat:@"%i", MAX(0, self.pontos)];
+        self.pontuacao.fontSize = 50;
+        self.pontuacao.fontColor = [UIColor blackColor];
+        
+        [self addChild:self.pontuacao];
+
         
         
         //02 Criar o Sprite do dragao
@@ -77,7 +90,7 @@
         self.dragao.physicsBody.affectedByGravity = NO;
         
         //Para o corpo nao girar
-        self.dragao.physicsBody.allowsRotation = NO;
+        self.dragao.physicsBody.allowsRotation = YES;
         self.dragao.physicsBody.density = 0.65f;
         
         //Elasticidade do corpo
@@ -86,6 +99,10 @@
         //friccao
         self.dragao.physicsBody.friction =0.0f;
         
+        //
+        self.dragao.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.dragao.size];
+        
+        
         //adicionar o dragao na tela
         [self addChild:self.dragao];
         
@@ -93,13 +110,10 @@
         
         //Define CategoryBitMask
         self.dragao.physicsBody.categoryBitMask = dragaoCategory;
-        self.flecha.physicsBody.categoryBitMask = flechaCategory;
-        self.diamante.physicsBody.categoryBitMask = diamanteCategory;
     
         //Define Qual CategoryBitMask colide com qual
         self.dragao.physicsBody.contactTestBitMask = flechaCategory;
         self.dragao.physicsBody.contactTestBitMask = diamanteCategory;
-        
         
     }
     return self;
@@ -114,6 +128,8 @@
         self.ultimoUpdateTimeInterval= currentTime;
     }
     [self updateWithTimeSinceLastUpdate:timeSinceLast];
+    
+
 }
 
 
@@ -127,6 +143,7 @@
         
         //Faz o corpo do dragao ficar dinamico
         self.dragao.physicsBody.dynamic = YES;
+        self.dragao.physicsBody.allowsRotation = NO;
         //Introduz gravidade
         self.dragao.physicsBody.affectedByGravity = YES;
         
@@ -184,27 +201,40 @@
 -(void)criarFlechas
 {
     
-    SKSpriteNode *flecha = [[SKSpriteNode alloc]initWithImageNamed:@"images.png"];
+    self.flecha = [[SKSpriteNode alloc]initWithImageNamed:@"flecha.png"];
     
     //Determina o tamanho
-    [flecha setSize:CGSizeMake(40.0f, 15.0f)];
+    [self.flecha setSize:CGSizeMake(40.0f, 15.0f)];
+    
+    //Dinamica da flecha
+    self.flecha.physicsBody.dynamic = NO;
     
     
    //Determina o spawn da flecha;
-    int posicaoFlecha = [self calculaORandom:flecha.size.height/2 :self.frame.size.height - flecha.size.height /2];
+    int posicaoFlecha = [self calculaORandom:self.flecha.size.height/2 :self.frame.size.height - self.flecha.size.height /2];
+    
+    //Criar corpo fisico
+    self.flecha.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.flecha.size.width/2, self.flecha.size.height/2)];
+    
+    //Valor do bitmask da flecha
+    self.flecha.physicsBody.categoryBitMask = flechaCategory;
+    self.flecha.physicsBody.collisionBitMask = dragaoCategory;
+    self.flecha.physicsBody.contactTestBitMask = dragaoCategory;
+    self.flecha.physicsBody.usesPreciseCollisionDetection = YES;
     
     //Criar a flecha antes da tela
-    flecha.position = CGPointMake(self.frame.size.width + flecha.size.width/2, posicaoFlecha);
-    [self addChild:flecha];
+    self.flecha.position = CGPointMake(self.frame.size.width + self.flecha.size.width/2, posicaoFlecha);
+    [self addChild:self.flecha];
     
     
     //Determina a velocidade da flecha
     int velocidade = [self calculaORandom:1.0 :4.0];
     
     //Criar acao
-    SKAction *moverFlecha = [SKAction moveTo:CGPointMake(-flecha.size.width/2, posicaoFlecha) duration:velocidade];
+    SKAction *moverFlecha = [SKAction moveTo:CGPointMake(-self.flecha.size.width/2, posicaoFlecha) duration:velocidade];
     SKAction *actionMoveDone = [SKAction removeFromParent];
-    [flecha runAction:[SKAction sequence:@[moverFlecha,actionMoveDone]]];
+    [self.flecha runAction:[SKAction sequence:@[moverFlecha,actionMoveDone]]];
+    
     
 }
 
@@ -213,27 +243,38 @@
 -(void)criarDiamantes
 {
     //cria o node diamante
-    SKSpriteNode *diamante = [[SKSpriteNode alloc]initWithImageNamed:@"Diamante.png"];
+    self.diamante = [[SKSpriteNode alloc]initWithImageNamed:@"Diamante.png"];
     
     //determina o diamante
-    [diamante setSize:CGSizeMake(20.0f, 20.0f)];
+    [self.diamante setSize:CGSizeMake(20.0f, 20.0f)];
+    
+    
+    //Criar corpo fisico
+    self.diamante.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.diamante.size];
+
+    
+    //Colisao diamante
+     self.diamante.physicsBody.categoryBitMask = diamanteCategory;
+    self.diamante.physicsBody.collisionBitMask = dragaoCategory;
+    self.diamante.physicsBody.contactTestBitMask = dragaoCategory;
+    self.diamante.physicsBody.usesPreciseCollisionDetection = YES;
     
     
     //Determina Spawn do diamante
-     int posicaoDiamante = [self calculaORandom:diamante.size.height/2 :self.frame.size.height - diamante.size.height /2];
+     int posicaoDiamante = [self calculaORandom:self.diamante.size.height/2 :self.frame.size.height - self.diamante.size.height /2];
     
     //Criar o diamante antes da tela
-    diamante.position = CGPointMake(self.frame.size.width + diamante.size.width/2, posicaoDiamante);
-    [self addChild:diamante];
+    self.diamante.position = CGPointMake(self.frame.size.width + self.diamante.size.width/2, posicaoDiamante);
+    [self addChild:self.diamante];
     
     
     //Determina a velocidade da do diamante
     int velocidade = [self calculaORandom:2.0 :5.0];
     
     //Criar acao
-    SKAction *moverDiamante = [SKAction moveTo:CGPointMake(-diamante.size.width/2, posicaoDiamante) duration:velocidade];
+    SKAction *moverDiamante = [SKAction moveTo:CGPointMake(-self.diamante.size.width/2, posicaoDiamante) duration:velocidade];
     SKAction *actionMoveDone = [SKAction removeFromParent];
-    [diamante runAction:[SKAction sequence:@[moverDiamante,actionMoveDone]]];
+    [self.diamante runAction:[SKAction sequence:@[moverDiamante,actionMoveDone]]];
     
 }
 
@@ -268,6 +309,60 @@
     }
 
 }
+
+//Metodo que soma pontos
+-(void)SomarPontos
+{
+    self.pontos++;
+    self.pontuacao.text = [NSString stringWithFormat:@"%i", MAX(0, self.pontos)];
+}
+
+//Metodo de Perder
+-(void)Perdeu
+{
+    self.vida--;
+    if(self.vida <= 0)
+    {
+        [self.dragao removeAllActions];
+        NSLog(@"Perdeu!!!");
+    }
+}
+
+//Metodo de contato
+-(void)didBeginContact:(SKPhysicsContact *)contato
+{
+    SKPhysicsBody *firstBody, *secondBody;
+    
+    if(contato.bodyA.categoryBitMask < contato.bodyB.categoryBitMask)
+    {
+        firstBody = contato.bodyA;
+        secondBody = contato.bodyB;
+    }
+    else
+    {
+        firstBody = contato.bodyB;
+        secondBody = contato.bodyA;
+    }
+    
+    if(firstBody.categoryBitMask == dragaoCategory && secondBody.categoryBitMask == flechaCategory)
+    {
+        [secondBody.node removeFromParent];
+         NSLog(@"FlechaHit");
+        [self Perdeu];
+    }
+    
+    if(firstBody.categoryBitMask == dragaoCategory && secondBody.categoryBitMask == diamanteCategory)
+    {
+        [secondBody.node removeFromParent];
+        NSLog(@"DiamanteHit");
+        [self SomarPontos];
+    
+    }
+
+    
+    
+}
+
 
 //metodo de iniciar jogo
 -(void)iniciarJogo
