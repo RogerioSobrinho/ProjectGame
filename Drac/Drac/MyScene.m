@@ -15,11 +15,14 @@
     
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
+        
+        [[Pontos pontos] setPontuacao:0];
     
         self.physicsWorld.contactDelegate=self;
         
         //Configura a gravidade
         self.physicsWorld.gravity=CGVectorMake(0.0f, -0.5f);
+    
 
         
         
@@ -36,6 +39,22 @@
     
         //comeca com 3 de vida
         self.vida = 3;
+        //Criar coracoes de vida na tela
+        self.coracao1 = [SKSpriteNode spriteNodeWithImageNamed:@"Vida.png"];
+        self.coracao1.position = CGPointMake(self.size.width -450, self.size.height - 30);
+        [self.coracao1 setSize:CGSizeMake(15.0f, 15.0f)];
+        [self addChild:self.coracao1];
+        
+        self.coracao2 = [SKSpriteNode spriteNodeWithImageNamed:@"Vida.png"];
+        self.coracao2.position = CGPointMake(self.size.width -432, self.size.height - 30);
+        [self.coracao2 setSize:CGSizeMake(15.0f, 15.0f)];
+        [self addChild:self.coracao2];
+        
+        self.coracao3 = [SKSpriteNode spriteNodeWithImageNamed:@"Vida.png"];
+        self.coracao3.position = CGPointMake(self.size.width -414, self.size.height - 30);
+        [self.coracao3 setSize:CGSizeMake(15.0f, 15.0f)];
+        [self addChild:self.coracao3];
+
         
         //Cria o chao
         CGRect chaoRect = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 1);
@@ -53,9 +72,9 @@
         //Faz a pontuacao e mostra na tela
         self.pontos = 0;
         self.pontuacao = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE-Regular"];
-        self.pontuacao.position = CGPointMake(self.size.width/2, self.size.height - 150);
-        self.pontuacao.text = [NSString stringWithFormat:@"%i", MAX(0, self.pontos)];
-        self.pontuacao.fontSize = 50;
+        self.pontuacao.position = CGPointMake(self.size.width -30, self.size.height - 35);
+        self.pontuacao.text = @"0";
+        self.pontuacao.fontSize = 20;
         self.pontuacao.fontColor = [UIColor blackColor];
         
         [self addChild:self.pontuacao];
@@ -150,7 +169,7 @@
         
         if ([touch locationInView:self.view].x > self.frame.size.width/2) {
             //Da impulso vertical para cima
-            [self.dragao.physicsBody applyImpulse:CGVectorMake(0, 7)];
+            [self.dragao.physicsBody applyImpulse:CGVectorMake(0, 15)];
         }
         else
         {
@@ -314,7 +333,9 @@
 -(void)SomarPontos
 {
     self.pontos++;
-    self.pontuacao.text = [NSString stringWithFormat:@"%i", MAX(0, self.pontos)];
+    
+    [[Pontos pontos] setPontuacao:[[Pontos pontos] pontuacao] + 15];
+    self.pontuacao.text = [NSString stringWithFormat:@"%i", MAX(0, [[Pontos pontos]pontuacao])];
 }
 
 //Metodo de Perder
@@ -325,6 +346,11 @@
     {
         [self.dragao removeAllActions];
         NSLog(@"Perdeu!!!");
+        //Cria a cena de game over
+        GameOverScene *gameOver=[[GameOverScene alloc]initWithSize:self.frame.size jogadorPerdeu:YES];
+        
+        //Pede para a MyScene acessar a view e apresentar o Game Over
+        [self.view presentScene:gameOver];
     }
 }
 
@@ -347,8 +373,18 @@
     if(firstBody.categoryBitMask == dragaoCategory && secondBody.categoryBitMask == flechaCategory)
     {
         [secondBody.node removeFromParent];
+        if(self.vida == 3)
+        {
+        [self.coracao3 removeFromParent];
+        }
+        if(self.vida == 2)
+        {
+            [self.coracao2 removeFromParent];
+        }
+        
          NSLog(@"FlechaHit");
         [self Perdeu];
+
     }
     
     if(firstBody.categoryBitMask == dragaoCategory && secondBody.categoryBitMask == diamanteCategory)

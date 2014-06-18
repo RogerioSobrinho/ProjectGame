@@ -23,6 +23,8 @@
 		3EC6871B1947472000886B58 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC686F61947471F00886B58 /* UIKit.framework */; };
 		3EC687231947472000886B58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EC687211947472000886B58 /* InfoPlist.strings */; };
 		3EC687251947472000886B58 /* DracTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC687241947472000886B58 /* DracTests.m */; };
+		A10B8D4B1951C9040031B349 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A10B8D4A1951C9040031B349 /* GameOverScene.m */; };
+		A10B8D4E1951D4150031B349 /* Pontos.m in Sources */ = {isa = PBXBuildFile; fileRef = A10B8D4D1951D4150031B349 /* Pontos.m */; };
 		A12E67151950760C00D62BF2 /* flecha.png in Resources */ = {isa = PBXBuildFile; fileRef = A12E67141950760C00D62BF2 /* flecha.png */; };
 		A12E67171950769900D62BF2 /* Vida.png in Resources */ = {isa = PBXBuildFile; fileRef = A12E67161950769900D62BF2 /* Vida.png */; };
 		A19B2C571948947400483981 /* 613354.png in Resources */ = {isa = PBXBuildFile; fileRef = A19B2C561948947400483981 /* 613354.png */; };
@@ -63,6 +65,10 @@
 		3EC687201947472000886B58 /* DracTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DracTests-Info.plist"; sourceTree = "<group>"; };
 		3EC687221947472000886B58 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3EC687241947472000886B58 /* DracTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DracTests.m; sourceTree = "<group>"; };
+		A10B8D491951C9040031B349 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		A10B8D4A1951C9040031B349 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		A10B8D4C1951D4150031B349 /* Pontos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pontos.h; sourceTree = "<group>"; };
+		A10B8D4D1951D4150031B349 /* Pontos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pontos.m; sourceTree = "<group>"; };
 		A12E67141950760C00D62BF2 /* flecha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecha.png; sourceTree = "<group>"; };
 		A12E67161950769900D62BF2 /* Vida.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vida.png; sourceTree = "<group>"; };
 		A19B2C561948947400483981 /* 613354.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 613354.png; sourceTree = "<group>"; };
@@ -98,6 +104,8 @@
 		3EC686E61947471F00886B58 = {
 			isa = PBXGroup;
 			children = (
+				A10B8D491951C9040031B349 /* GameOverScene.h */,
+				A10B8D4A1951C9040031B349 /* GameOverScene.m */,
 				3EC686FA1947471F00886B58 /* Drac */,
 				3EC6871E1947472000886B58 /* DracTests */,
 				3EC686F11947471F00886B58 /* Frameworks */,
@@ -137,6 +145,8 @@
 				3EC6870A1947472000886B58 /* ViewController.m */,
 				3EC6870C1947472000886B58 /* MyScene.h */,
 				3EC6870D1947472000886B58 /* MyScene.m */,
+				A10B8D4C1951D4150031B349 /* Pontos.h */,
+				A10B8D4D1951D4150031B349 /* Pontos.m */,
 				3EC687111947472000886B58 /* Images.xcassets */,
 				3EC686FB1947471F00886B58 /* Supporting Files */,
 			);
@@ -286,9 +296,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10B8D4B1951C9040031B349 /* GameOverScene.m in Sources */,
 				3EC6870E1947472000886B58 /* MyScene.m in Sources */,
 				3EC6870B1947472000886B58 /* ViewController.m in Sources */,
 				3EC687051947472000886B58 /* AppDelegate.m in Sources */,
+				A10B8D4E1951D4150031B349 /* Pontos.m in Sources */,
 				3EC687011947471F00886B58 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,6 +11,8 @@ static const UInt32 diamanteCategory = 0x1 << 2;
 
 
 #import <SpriteKit/SpriteKit.h>
+#import "GameOverScene.h"
+#import "Pontos.h"
 
 @interface MyScene : SKScene <SKPhysicsContactDelegate>
 {
@@ -24,6 +26,9 @@ static const UInt32 diamanteCategory = 0x1 << 2;
 @property SKSpriteNode *flecha;
 @property SKSpriteNode *dragao;
 @property SKSpriteNode *diamante;
+@property SKSpriteNode *coracao1;
+@property SKSpriteNode *coracao2;
+@property SKSpriteNode *coracao3;
 
 @property int vida;
 @property int pontos;
