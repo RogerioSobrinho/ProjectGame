@@ -10,9 +10,16 @@
 #import "MyScene.h"
 #import "Pontos.h"
 
+static const uint32_t botaoRestartCategory   = 0x1 << 0;
+static NSString* botaoCategoryName = @"botaoRestart";
+
 @interface GameOverScene : SKScene
 
+@property SKSpriteNode *botaoRestart;
+
+
 -(id)initWithSize:(CGSize)size jogadorPerdeu:(BOOL)Perdeu;
+
 
 
 @end

@@ -34,4 +34,18 @@
     return self;
 }
 
+- (void)salvarPontuacao
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:self.pontuacao forKey:@"HS"];
+    [defaults synchronize];
+}
+
+- (void)pegarPontuacao
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.highScore = [defaults integerForKey:@"HS"];
+}
+
 @end

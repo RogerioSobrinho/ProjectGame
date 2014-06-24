@@ -12,6 +12,11 @@
 
 + (Pontos *) pontos;
 
+- (void)salvarPontuacao;
+- (void)pegarPontuacao;
+
 @property int pontuacao;
+
+@property int highScore;
 
 @end

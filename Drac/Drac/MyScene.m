@@ -16,14 +16,14 @@
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
+        self.iniciarJogo = NO;
+        
         [[Pontos pontos] setPontuacao:0];
     
         self.physicsWorld.contactDelegate=self;
         
         //Configura a gravidade
         self.physicsWorld.gravity=CGVectorMake(0.0f, -0.5f);
-    
-
         
         
         // Criar fundo de tela
@@ -118,8 +118,6 @@
         //friccao
         self.dragao.physicsBody.friction =0.0f;
         
-        //
-        self.dragao.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.dragao.size];
         
         
         //adicionar o dragao na tela
@@ -140,15 +138,18 @@
 
 //Atualizacao
 -(void)update:(NSTimeInterval)currentTime{
-    CFTimeInterval timeSinceLast = currentTime -self.ultimoUpdateTimeInterval;
-    self.ultimoUpdateTimeInterval = currentTime;
-    if(timeSinceLast > 1){
-        timeSinceLast = 1.0 / 60.0;
-        self.ultimoUpdateTimeInterval= currentTime;
-    }
-    [self updateWithTimeSinceLastUpdate:timeSinceLast];
     
-
+    if (self.iniciarJogo == YES) {
+        CFTimeInterval timeSinceLast = currentTime -self.ultimoUpdateTimeInterval;
+        self.ultimoUpdateTimeInterval = currentTime;
+        
+        
+        if(timeSinceLast > 1){
+            timeSinceLast = 1.0 / 60.0;
+            self.ultimoUpdateTimeInterval= currentTime;
+        }
+        [self updateWithTimeSinceLastUpdate:timeSinceLast];
+    }
 }
 
 
@@ -156,9 +157,9 @@
 //Metodo de toque na tela
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-
     for (UITouch *touch in touches)
     {
+        self.iniciarJogo = YES;
         
         //Faz o corpo do dragao ficar dinamico
         self.dragao.physicsBody.dynamic = YES;
@@ -243,6 +244,7 @@
     
     //Criar a flecha antes da tela
     self.flecha.position = CGPointMake(self.frame.size.width + self.flecha.size.width/2, posicaoFlecha);
+    
     [self addChild:self.flecha];
     
     
@@ -297,6 +299,44 @@
     
 }
 
+//Criar o diamante2 (amarelo)
+-(void)criarDiamantes2
+{
+    //cria o node diamante
+    self.diamante2 = [[SKSpriteNode alloc]initWithImageNamed:@"diamante2.png"];
+    
+    //determina o diamante
+    [self.diamante2 setSize:CGSizeMake(20.0f, 20.0f)];
+    
+    
+    //Criar corpo fisico
+    self.diamante2.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.diamante.size];
+    
+    
+    //Colisao diamante
+    self.diamante2.physicsBody.categoryBitMask = diamante2Category;
+    self.diamante2.physicsBody.collisionBitMask = dragaoCategory;
+    self.diamante2.physicsBody.contactTestBitMask = dragaoCategory;
+    self.diamante2.physicsBody.usesPreciseCollisionDetection = YES;
+    
+    
+    //Determina Spawn do diamante
+    int posicaoDiamante = [self calculaORandom:self.diamante2.size.height/2 :self.frame.size.height - self.diamante2.size.height /2];
+    
+    //Criar o diamante antes da tela
+    self.diamante2.position = CGPointMake(self.frame.size.width + self.diamante2.size.width/2, posicaoDiamante);
+    [self addChild:self.diamante2];
+    
+    
+    //Determina a velocidade da do diamante
+    int velocidade = [self calculaORandom:2.0 :5.0];
+    
+    //Criar acao
+    SKAction *moverDiamante = [SKAction moveTo:CGPointMake(-self.diamante2.size.width/2, posicaoDiamante) duration:velocidade];
+    SKAction *actionMoveDone = [SKAction removeFromParent];
+    [self.diamante2 runAction:[SKAction sequence:@[moverDiamante,actionMoveDone]]];
+    
+}
 
  // Metodo de calcular Random
 -(int)calculaORandom:(int)min :(int)max{
@@ -326,15 +366,27 @@
         self.ultimoSpawnDiamante = 0;
         [self criarDiamantes];
     }
+    
+    self.ultimoSpawnD2 += timeSinceLast;
+    if(self.ultimoSpawnD2 > tempoRespawnDiamante)
+    {
+        self.ultimoSpawnD2 = 0;
+        [self criarDiamantes2];
+    }
+
 
 }
 
 //Metodo que soma pontos
--(void)SomarPontos
+-(void)SomarPontosComTipo:(int)tipo
 {
     self.pontos++;
     
-    [[Pontos pontos] setPontuacao:[[Pontos pontos] pontuacao] + 15];
+    if (tipo == 0) {
+        [[Pontos pontos] setPontuacao:[[Pontos pontos] pontuacao] + 15];
+    }else if (tipo == 1){
+        [[Pontos pontos] setPontuacao:[[Pontos pontos] pontuacao] + 30];
+    }
     self.pontuacao.text = [NSString stringWithFormat:@"%i", MAX(0, [[Pontos pontos]pontuacao])];
 }
 
@@ -391,21 +443,12 @@
     {
         [secondBody.node removeFromParent];
         NSLog(@"DiamanteHit");
-        [self SomarPontos];
-    
+        [self SomarPontosComTipo:0];
     }
-
-    
-    
+    if(firstBody.categoryBitMask == dragaoCategory && secondBody.categoryBitMask == diamante2Category)
+    {
+        [secondBody.node removeFromParent];
+        [self SomarPontosComTipo:1];
+    }
 }
-
-
-//metodo de iniciar jogo
--(void)iniciarJogo
-{
-    
-}
-
-
-
 @end
