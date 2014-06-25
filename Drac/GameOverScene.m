@@ -41,7 +41,7 @@
         [self addChild:pontuacaoLabel];
         
         //Botao Restart
-        self.botaoRestart = [SKSpriteNode spriteNodeWithImageNamed:@"start_button.png"];
+        self.botaoRestart = [SKSpriteNode spriteNodeWithImageNamed:@"btnres.png"];
         self.botaoRestart.position = CGPointMake(self.size.width/2, self.size.height - 270);
         [self addChild:self.botaoRestart];
         
@@ -61,12 +61,10 @@
             }
         }else{
             [[Pontos pontos]salvarPontuacao];
+  
         }
         
        
-        
-
-        self.botaoRestart.physicsBody.categoryBitMask = botaoRestartCategory;
         self.botaoRestart.name = botaoCategoryName;
         
     }

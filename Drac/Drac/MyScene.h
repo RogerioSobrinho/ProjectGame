@@ -14,6 +14,8 @@ static const UInt32 diamante2Category = 0x1 << 3;
 #import "GameOverScene.h"
 #import "Pontos.h"
 
+static NSString* inicCategoryName = @"botaoIniciar";
+
 @interface MyScene : SKScene <SKPhysicsContactDelegate>
 {
     double flechaTimer;
@@ -36,6 +38,14 @@ static const UInt32 diamante2Category = 0x1 << 3;
 @property int vida;
 @property int pontos;
 @property SKLabelNode *pontuacao;
+
+
+//Labels que aparecem na tela
+@property SKLabelNode *EsqLabel;
+@property SKLabelNode *EsqLabel2;
+@property SKLabelNode *DirLabel;
+@property SKLabelNode *DirLabel2;
+@property SKLabelNode *tituloLabel;
 
 @property BOOL iniciarJogo;
 

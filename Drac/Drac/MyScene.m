@@ -37,104 +37,69 @@
         [self addChild:fundo];
         
     
-        //comeca com 3 de vida
-        self.vida = 3;
-        //Criar coracoes de vida na tela
-        self.coracao1 = [SKSpriteNode spriteNodeWithImageNamed:@"Vida.png"];
-        self.coracao1.position = CGPointMake(self.size.width -450, self.size.height - 30);
-        [self.coracao1 setSize:CGSizeMake(15.0f, 15.0f)];
-        [self addChild:self.coracao1];
-        
-        self.coracao2 = [SKSpriteNode spriteNodeWithImageNamed:@"Vida.png"];
-        self.coracao2.position = CGPointMake(self.size.width -432, self.size.height - 30);
-        [self.coracao2 setSize:CGSizeMake(15.0f, 15.0f)];
-        [self addChild:self.coracao2];
-        
-        self.coracao3 = [SKSpriteNode spriteNodeWithImageNamed:@"Vida.png"];
-        self.coracao3.position = CGPointMake(self.size.width -414, self.size.height - 30);
-        [self.coracao3 setSize:CGSizeMake(15.0f, 15.0f)];
-        [self addChild:self.coracao3];
-
         
         //Cria o chao
         CGRect chaoRect = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 1);
         SKNode *chao = [SKNode node];
         chao.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:chaoRect];
+        chao.physicsBody.restitution = 0.0f;
         [self addChild:chao];
 
         //Cria o teto
         CGRect tetoRect = CGRectMake(self.frame.origin.x, self.frame.size.height, self.frame.size.width, 1);
         SKNode *teto = [SKNode node];
         teto.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:tetoRect];
+        teto.physicsBody.restitution = 0.0f;
         [self addChild:teto];
         
         
-        //Faz a pontuacao e mostra na tela
-        self.pontos = 0;
-        self.pontuacao = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE-Regular"];
-        self.pontuacao.position = CGPointMake(self.size.width -30, self.size.height - 35);
-        self.pontuacao.text = @"0";
-        self.pontuacao.fontSize = 20;
-        self.pontuacao.fontColor = [UIColor blackColor];
+        //Cria as Labels de Instrucao do lado esquerdo
+        self.EsqLabel = [SKLabelNode labelNodeWithFontNamed:@"MarkerFelt-Wide"];
+        self.EsqLabel.fontSize = 10;
+        self.EsqLabel.fontColor = [UIColor blackColor];
+        self.EsqLabel.position = CGPointMake(self.size.width - 350, self.size.height - 210);
+        self.EsqLabel.text = @"Toque deste lado da tela";
+        [self addChild:self.EsqLabel];
         
-        [self addChild:self.pontuacao];
+        self.EsqLabel2 = [SKLabelNode labelNodeWithFontNamed:@"MarkerFelt-Wide"];
+        self.EsqLabel2.fontSize = 10;
+        self.EsqLabel2.fontColor = [UIColor blackColor];
+        self.EsqLabel2.position = CGPointMake(self.size.width - 350, self.size.height - 230);
+        self.EsqLabel2.text = @"para o Drac descer";
+        [self addChild:self.EsqLabel2];
 
         
         
-        //02 Criar o Sprite do dragao
-        self.dragao = [SKSpriteNode spriteNodeWithImageNamed:@"DracMod2PS.png"];
+        //Cria as Labels de Instrucao do lado direito
+        self.DirLabel = [SKLabelNode labelNodeWithFontNamed:@"MarkerFelt-Wide"];
+        self.DirLabel.fontSize = 10;
+        self.DirLabel.fontColor = [UIColor blackColor];
+        self.DirLabel.position = CGPointMake(self.size.width - 130, self.size.height - 210);
+        self.DirLabel.text = @"Toque deste lado da tela";
+        [self addChild:self.DirLabel];
+        
+        self.DirLabel2 = [SKLabelNode labelNodeWithFontNamed:@"MarkerFelt-Wide"];
+        self.DirLabel2.fontSize = 10;
+        self.DirLabel2.fontColor = [UIColor blackColor];
+        self.DirLabel2.position = CGPointMake(self.size.width - 130, self.size.height - 230);
+        self.DirLabel2.text = @"para o Drac subir";
+        [self addChild:self.DirLabel2];
 
-        //criar frames do dragao
-        self.dragaoFrames = [self carregarSprites:@"DracMod2PS.png" withNumberOfSprites:8 withNumberOfRows:2 withNumberOfSpritesPerRow:4];
-        
-        [self.dragao setSize:CGSizeMake(70.0f, 70.0f)];
-        
-        //Posicionamento do dragao na tela(no jogo)
-        self.dragao.position = CGPointMake(self.size.width / 5, self.size.height / 2);
-        self.dragao.zRotation = 0;
-        
-        //Criacao da Animacao
-        SKAction *dragaoAnimado = [SKAction animateWithTextures:self.dragaoFrames timePerFrame:0.08f];
-        
-        //Animacao
-        [self.dragao runAction:[SKAction repeatActionForever:dragaoAnimado]];
-        
-        //Criar corpo fisico
-        self.dragao.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.dragao.size.width/2];
-        
-        // Nao permite o corpo fisico movimentar a Sprite
-        self.dragao.physicsBody.dynamic = NO;
-        
-        // Faz o corpo ser afetado pela gravidade
-        self.dragao.physicsBody.affectedByGravity = NO;
-        
-        //Para o corpo nao girar
-        self.dragao.physicsBody.allowsRotation = YES;
-        self.dragao.physicsBody.density = 0.65f;
-        
-        //Elasticidade do corpo
-        self.dragao.physicsBody.restitution = 0.0f;
-        
-        //friccao
-        self.dragao.physicsBody.friction =0.0f;
-        
-        
-        
-        //adicionar o dragao na tela
-        [self addChild:self.dragao];
-        
-        
-        
-        //Define CategoryBitMask
-        self.dragao.physicsBody.categoryBitMask = dragaoCategory;
-    
-        //Define Qual CategoryBitMask colide com qual
-        self.dragao.physicsBody.contactTestBitMask = flechaCategory;
-        self.dragao.physicsBody.contactTestBitMask = diamanteCategory;
+        //Cria a Label para o titulo
+        self.tituloLabel = [SKLabelNode labelNodeWithFontNamed:@"MarkerFelt-Wide"];
+        self.tituloLabel.fontSize = 60;
+        self.tituloLabel.fontColor = [UIColor blackColor];
+        self.tituloLabel.position = CGPointMake(self.size.width/2, self.size.height -100);
+        self.tituloLabel.text = @"Drac";
+        [self addChild:self.tituloLabel];
+
+      
         
     }
     return self;
 }
+
+
 
 //Atualizacao
 -(void)update:(NSTimeInterval)currentTime{
@@ -150,7 +115,10 @@
         }
         [self updateWithTimeSinceLastUpdate:timeSinceLast];
     }
+    
+    self.dragao.position = CGPointMake(self.frame.size.width / 5, self.dragao.position.y);
 }
+
 
 
 
@@ -159,6 +127,22 @@
 {
     for (UITouch *touch in touches)
     {
+        //adicionar o dragao na tela
+        if(self.iniciarJogo == NO)
+        {
+            //Remove as labels
+            [self.EsqLabel removeFromParent];
+            [self.EsqLabel2 removeFromParent];
+            [self.DirLabel removeFromParent];
+            [self.DirLabel2 removeFromParent];
+            [self.tituloLabel removeFromParent];
+            
+            //adiciona o dragao, a vida e os pontos na tela
+            [self CriarDragao];
+            [self criarCoracao];
+            [self criarPontuacaoTela];
+        }
+        
         self.iniciarJogo = YES;
         
         //Faz o corpo do dragao ficar dinamico
@@ -170,16 +154,69 @@
         
         if ([touch locationInView:self.view].x > self.frame.size.width/2) {
             //Da impulso vertical para cima
-            [self.dragao.physicsBody applyImpulse:CGVectorMake(0, 15)];
+            [self.dragao.physicsBody applyImpulse:CGVectorMake(0, 7)];
         }
         else
         {
             //Da impulso vertical para baixo
-            [self.dragao.physicsBody applyImpulse:CGVectorMake(0, -5)];
+            [self.dragao.physicsBody applyImpulse:CGVectorMake(0, -7)];
         }
     }
 }
 
+
+//Metodo que cria o dragao
+-(void)CriarDragao
+{
+    
+    //02 Criar o Sprite do dragao
+    self.dragao = [SKSpriteNode spriteNodeWithImageNamed:@"DracMod2PS.png"];
+    
+    //criar frames do dragao
+    self.dragaoFrames = [self carregarSprites:@"DracMod2PS.png" withNumberOfSprites:8 withNumberOfRows:2 withNumberOfSpritesPerRow:4];
+    
+    [self.dragao setSize:CGSizeMake(70.0f, 70.0f)];
+    
+    //Posicionamento do dragao na tela(no jogo)
+    self.dragao.position = CGPointMake(self.size.width / 5, self.size.height / 2);
+    self.dragao.zRotation = 0;
+    
+    //Criacao da Animacao
+    SKAction *dragaoAnimado = [SKAction animateWithTextures:self.dragaoFrames timePerFrame:0.08f];
+    
+    //Animacao
+    [self.dragao runAction:[SKAction repeatActionForever:dragaoAnimado]];
+    
+    //Criar corpo fisico
+    self.dragao.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.dragao.size.width/2];
+    
+    // Nao permite o corpo fisico movimentar a Sprite
+    self.dragao.physicsBody.dynamic = NO;
+    
+    // Faz o corpo ser afetado pela gravidade
+    self.dragao.physicsBody.affectedByGravity = NO;
+    
+    //Para o corpo nao girar
+    self.dragao.physicsBody.allowsRotation = NO;
+    self.dragao.physicsBody.density = 0.65f;
+    
+    //Elasticidade do corpo
+    self.dragao.physicsBody.restitution = 0.0f;
+    
+    //friccao
+    self.dragao.physicsBody.friction =0.0f;
+    
+
+    //Define CategoryBitMask
+    self.dragao.physicsBody.categoryBitMask = dragaoCategory;
+    
+    //Define Qual CategoryBitMask colide com qual
+    self.dragao.physicsBody.contactTestBitMask = flechaCategory;
+    self.dragao.physicsBody.contactTestBitMask = diamanteCategory;
+    [self addChild:self.dragao];
+    
+    
+}
 
 //Metodo de carregar animacao do Dragao
 -(NSMutableArray*) carregarSprites:nome withNumberOfSprites:(int)numSprites withNumberOfRows:(int) numRows withNumberOfSpritesPerRow:(int) numSpritesPerRow{
@@ -217,6 +254,43 @@
 }
 
 
+//Cria os coracoes de vida na tela
+-(void)criarCoracao
+{
+    
+    //comeca com 3 de vida
+    self.vida = 3;
+    //Criar coracoes de vida na tela
+    self.coracao1 = [SKSpriteNode spriteNodeWithImageNamed:@"Vida.png"];
+    self.coracao1.position = CGPointMake(self.size.width -450, self.size.height - 30);
+    [self.coracao1 setSize:CGSizeMake(15.0f, 15.0f)];
+    [self addChild:self.coracao1];
+    
+    self.coracao2 = [SKSpriteNode spriteNodeWithImageNamed:@"Vida.png"];
+    self.coracao2.position = CGPointMake(self.size.width -432, self.size.height - 30);
+    [self.coracao2 setSize:CGSizeMake(15.0f, 15.0f)];
+    [self addChild:self.coracao2];
+    
+    self.coracao3 = [SKSpriteNode spriteNodeWithImageNamed:@"Vida.png"];
+    self.coracao3.position = CGPointMake(self.size.width -414, self.size.height - 30);
+    [self.coracao3 setSize:CGSizeMake(15.0f, 15.0f)];
+    [self addChild:self.coracao3];
+
+}
+
+//Cria a pontuacao na tela de jogo
+-(void)criarPontuacaoTela
+{
+    //Faz a pontuacao e mostra na tela
+    self.pontos = 0;
+    self.pontuacao = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE-Regular"];
+    self.pontuacao.position = CGPointMake(self.size.width -30, self.size.height - 35);
+    self.pontuacao.text = @"0";
+    self.pontuacao.fontSize = 20;
+    self.pontuacao.fontColor = [UIColor blackColor];
+    [self addChild:self.pontuacao];
+}
+
 //Cria as flechas na tela
 -(void)criarFlechas
 {
@@ -228,7 +302,7 @@
     
     //Dinamica da flecha
     self.flecha.physicsBody.dynamic = NO;
-    
+    self.flecha.physicsBody.restitution = 0.0;
     
    //Determina o spawn da flecha;
     int posicaoFlecha = [self calculaORandom:self.flecha.size.height/2 :self.frame.size.height - self.flecha.size.height /2];
@@ -272,10 +346,11 @@
     
     //Criar corpo fisico
     self.diamante.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.diamante.size];
+    self.diamante.physicsBody.restitution = 0.0;
 
     
     //Colisao diamante
-     self.diamante.physicsBody.categoryBitMask = diamanteCategory;
+    self.diamante.physicsBody.categoryBitMask = diamanteCategory;
     self.diamante.physicsBody.collisionBitMask = dragaoCategory;
     self.diamante.physicsBody.contactTestBitMask = dragaoCategory;
     self.diamante.physicsBody.usesPreciseCollisionDetection = YES;
@@ -311,7 +386,7 @@
     
     //Criar corpo fisico
     self.diamante2.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.diamante.size];
-    
+    self.diamante2.physicsBody.restitution = 0.0;
     
     //Colisao diamante
     self.diamante2.physicsBody.categoryBitMask = diamante2Category;
@@ -361,7 +436,7 @@
     }
     
     self.ultimoSpawnDiamante += timeSinceLast;
-    if(self.ultimoSpawnDiamante > tempoRespawnDiamante)
+    if(self.ultimoSpawnDiamante > tempDeRespawn)
     {
         self.ultimoSpawnDiamante = 0;
         [self criarDiamantes];
