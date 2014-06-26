@@ -61,7 +61,7 @@
             }
         }else{
             [[Pontos pontos]salvarPontuacao];
-  
+            
         }
         
        

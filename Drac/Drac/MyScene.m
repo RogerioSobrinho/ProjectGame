@@ -93,7 +93,12 @@
         self.tituloLabel.text = @"Drac";
         [self addChild:self.tituloLabel];
 
-      
+        //Cria a musica do jogo
+        NSURL *urlMusica = [[NSBundle mainBundle] URLForResource:@"DracTheme" withExtension:@"mp3"];
+        self.musica = [[AVAudioPlayer alloc]initWithContentsOfURL:urlMusica error:nil];
+        self.musica.numberOfLoops = -1;
+        [self.musica prepareToPlay];
+        [self.musica play];
         
     }
     return self;
@@ -323,7 +328,7 @@
     
     
     //Determina a velocidade da flecha
-    int velocidade = [self calculaORandom:1.0 :4.0];
+    int velocidade = [self calculaORandom:1.0 : 4.0];
     
     //Criar acao
     SKAction *moverFlecha = [SKAction moveTo:CGPointMake(-self.flecha.size.width/2, posicaoFlecha) duration:velocidade];
@@ -332,6 +337,50 @@
     
     
 }
+
+
+//Cria as pedras na tela
+-(void)criarPedra
+{
+    
+    self.pedra = [[SKSpriteNode alloc]initWithImageNamed:@"Pedra.png"];
+    
+    //Determina o tamanho
+    [self.pedra setSize:CGSizeMake(30.0f, 30.0f)];
+    
+    //Dinamica da flecha
+    self.pedra.physicsBody.dynamic = NO;
+    self.pedra.physicsBody.restitution = 0.0;
+    
+    //Determina o spawn da flecha;
+    int posicaoPedra = [self calculaORandom:self.pedra.size.height/2 :self.frame.size.height - self.pedra.size.height /2];
+    
+    //Criar corpo fisico
+    self.pedra.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.pedra.size.width/2, self.pedra.size.height/2)];
+    
+    //Valor do bitmask da pedra
+    self.pedra.physicsBody.categoryBitMask = pedraCategory;
+    self.pedra.physicsBody.collisionBitMask = dragaoCategory;
+    self.pedra.physicsBody.contactTestBitMask = dragaoCategory;
+    self.pedra.physicsBody.usesPreciseCollisionDetection = YES;
+    
+    //Criar a pedra antes da tela
+    self.pedra.position = CGPointMake(self.frame.size.width + self.pedra.size.width/2, posicaoPedra);
+    
+    [self addChild:self.pedra];
+    
+    
+    //Determina a velocidade da pedra
+    int velocidade = [self calculaORandom:1.0 :3.0];
+    
+    //Criar acao
+    SKAction *moverPedra = [SKAction moveTo:CGPointMake(-self.pedra.size.width/2, posicaoPedra) duration:velocidade];
+    SKAction *actionMoveDone = [SKAction removeFromParent];
+    [self.pedra runAction:[SKAction sequence:@[moverPedra,actionMoveDone]]];
+    
+    
+}
+
 
 
 //Criar os diamantes
@@ -427,6 +476,7 @@
     
     int tempDeRespawn = 1;
     int tempoRespawnDiamante = 3;
+    int tempoRespawnPedra = 7;
 
     self.ultimoSpawnTimeInterval += timeSinceLast;
     if(self.ultimoSpawnTimeInterval > tempDeRespawn)
@@ -447,6 +497,12 @@
     {
         self.ultimoSpawnD2 = 0;
         [self criarDiamantes2];
+    }
+    
+    self.ultimoSpawnPedra += timeSinceLast;
+    if (self.ultimoSpawnPedra > tempoRespawnPedra) {
+        self.ultimoSpawnPedra = 0;
+        [self criarPedra];
     }
 
 
@@ -497,6 +553,7 @@
         secondBody = contato.bodyA;
     }
     
+    // se a flecha atingir o dragao
     if(firstBody.categoryBitMask == dragaoCategory && secondBody.categoryBitMask == flechaCategory)
     {
         [secondBody.node removeFromParent];
@@ -525,5 +582,24 @@
         [secondBody.node removeFromParent];
         [self SomarPontosComTipo:1];
     }
+    
+    // se a pedra atingir o drac
+    if(firstBody.categoryBitMask == dragaoCategory && secondBody.categoryBitMask == pedraCategory)
+    {
+        [secondBody.node removeFromParent];
+        if(self.vida == 3)
+        {
+            [self.coracao3 removeFromParent];
+        }
+        if(self.vida == 2)
+        {
+            [self.coracao2 removeFromParent];
+        }
+        
+        NSLog(@"FlechaHit");
+        [self Perdeu];
+        
+    }
+
 }
 @end

@@ -27,6 +27,9 @@
 		A10B8D4E1951D4150031B349 /* Pontos.m in Sources */ = {isa = PBXBuildFile; fileRef = A10B8D4D1951D4150031B349 /* Pontos.m */; };
 		A12E67151950760C00D62BF2 /* flecha.png in Resources */ = {isa = PBXBuildFile; fileRef = A12E67141950760C00D62BF2 /* flecha.png */; };
 		A12E67171950769900D62BF2 /* Vida.png in Resources */ = {isa = PBXBuildFile; fileRef = A12E67161950769900D62BF2 /* Vida.png */; };
+		A14B7858195C54AB00D3EEE4 /* Pedra.png in Resources */ = {isa = PBXBuildFile; fileRef = A14B7857195C54AB00D3EEE4 /* Pedra.png */; };
+		A14B785A195C5A0700D3EEE4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14B7859195C5A0700D3EEE4 /* AVFoundation.framework */; };
+		A14B785E195C5B3F00D3EEE4 /* DracTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A14B785D195C5B3F00D3EEE4 /* DracTheme.mp3 */; };
 		A14DA992195B048300198C6E /* btnini.png in Resources */ = {isa = PBXBuildFile; fileRef = A14DA991195B048300198C6E /* btnini.png */; };
 		A14DA994195B048C00198C6E /* btnres.png in Resources */ = {isa = PBXBuildFile; fileRef = A14DA993195B048C00198C6E /* btnres.png */; };
 		A19B2C571948947400483981 /* 613354.png in Resources */ = {isa = PBXBuildFile; fileRef = A19B2C561948947400483981 /* 613354.png */; };
@@ -74,6 +77,9 @@
 		A10B8D4D1951D4150031B349 /* Pontos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pontos.m; sourceTree = "<group>"; };
 		A12E67141950760C00D62BF2 /* flecha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecha.png; sourceTree = "<group>"; };
 		A12E67161950769900D62BF2 /* Vida.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vida.png; sourceTree = "<group>"; };
+		A14B7857195C54AB00D3EEE4 /* Pedra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pedra.png; sourceTree = "<group>"; };
+		A14B7859195C5A0700D3EEE4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A14B785D195C5B3F00D3EEE4 /* DracTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DracTheme.mp3; sourceTree = "<group>"; };
 		A14DA991195B048300198C6E /* btnini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnini.png; sourceTree = "<group>"; };
 		A14DA993195B048C00198C6E /* btnres.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnres.png; sourceTree = "<group>"; };
 		A19B2C561948947400483981 /* 613354.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 613354.png; sourceTree = "<group>"; };
@@ -87,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A14B785A195C5A0700D3EEE4 /* AVFoundation.framework in Frameworks */,
 				3EC686F51947471F00886B58 /* CoreGraphics.framework in Frameworks */,
 				3EC686F71947471F00886B58 /* UIKit.framework in Frameworks */,
 				3EC686F91947471F00886B58 /* SpriteKit.framework in Frameworks */,
@@ -131,6 +138,7 @@
 		3EC686F11947471F00886B58 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A14B7859195C5A0700D3EEE4 /* AVFoundation.framework */,
 				3EC686F21947471F00886B58 /* Foundation.framework */,
 				3EC686F41947471F00886B58 /* CoreGraphics.framework */,
 				3EC686F61947471F00886B58 /* UIKit.framework */,
@@ -143,6 +151,7 @@
 		3EC686FA1947471F00886B58 /* Drac */ = {
 			isa = PBXGroup;
 			children = (
+				A14B7856195C549A00D3EEE4 /* Audio */,
 				A14E112E19474E6B00184203 /* Sprites */,
 				3EC687031947472000886B58 /* AppDelegate.h */,
 				3EC687041947472000886B58 /* AppDelegate.m */,
@@ -188,9 +197,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A14B7856195C549A00D3EEE4 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				A14B785D195C5B3F00D3EEE4 /* DracTheme.mp3 */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
 		A14E112E19474E6B00184203 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				A14B7857195C54AB00D3EEE4 /* Pedra.png */,
 				A14DA993195B048C00198C6E /* btnres.png */,
 				A14DA991195B048300198C6E /* btnini.png */,
 				A1F116711959B3CA00817B75 /* diamante2.png */,
@@ -279,9 +297,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A14B7858195C54AB00D3EEE4 /* Pedra.png in Resources */,
 				A12E67171950769900D62BF2 /* Vida.png in Resources */,
 				A1F116721959B3CA00817B75 /* diamante2.png in Resources */,
 				A14DA992195B048300198C6E /* btnini.png in Resources */,
+				A14B785E195C5B3F00D3EEE4 /* DracTheme.mp3 in Resources */,
 				A14DA994195B048C00198C6E /* btnres.png in Resources */,
 				A12E67151950760C00D62BF2 /* flecha.png in Resources */,
 				A1CA97B5194F250E0088DD35 /* DracMod2PS.png in Resources */,
