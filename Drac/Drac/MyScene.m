@@ -303,7 +303,7 @@
     self.flecha = [[SKSpriteNode alloc]initWithImageNamed:@"flecha.png"];
     
     //Determina o tamanho
-    [self.flecha setSize:CGSizeMake(40.0f, 15.0f)];
+    [self.flecha setSize:CGSizeMake(30.0f, 10.0f)];
     
     //Dinamica da flecha
     self.flecha.physicsBody.dynamic = NO;
@@ -346,7 +346,7 @@
     self.pedra = [[SKSpriteNode alloc]initWithImageNamed:@"Pedra.png"];
     
     //Determina o tamanho
-    [self.pedra setSize:CGSizeMake(30.0f, 30.0f)];
+    [self.pedra setSize:CGSizeMake(20.0f, 20.0f)];
     
     //Dinamica da flecha
     self.pedra.physicsBody.dynamic = NO;
@@ -390,7 +390,7 @@
     self.diamante = [[SKSpriteNode alloc]initWithImageNamed:@"Diamante.png"];
     
     //determina o diamante
-    [self.diamante setSize:CGSizeMake(20.0f, 20.0f)];
+    [self.diamante setSize:CGSizeMake(15.0f, 15.0f)];
     
     
     //Criar corpo fisico
@@ -430,7 +430,7 @@
     self.diamante2 = [[SKSpriteNode alloc]initWithImageNamed:@"diamante2.png"];
     
     //determina o diamante
-    [self.diamante2 setSize:CGSizeMake(20.0f, 20.0f)];
+    [self.diamante2 setSize:CGSizeMake(15.0f, 15.0f)];
     
     
     //Criar corpo fisico
@@ -476,7 +476,7 @@
     
     int tempDeRespawn = 1;
     int tempoRespawnDiamante = 3;
-    int tempoRespawnPedra = 7;
+    int tempoRespawnPedra = 5;
 
     self.ultimoSpawnTimeInterval += timeSinceLast;
     if(self.ultimoSpawnTimeInterval > tempDeRespawn)
