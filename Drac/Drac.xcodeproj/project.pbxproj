@@ -30,7 +30,6 @@
 		A14B7858195C54AB00D3EEE4 /* Pedra.png in Resources */ = {isa = PBXBuildFile; fileRef = A14B7857195C54AB00D3EEE4 /* Pedra.png */; };
 		A14B785A195C5A0700D3EEE4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14B7859195C5A0700D3EEE4 /* AVFoundation.framework */; };
 		A14B785E195C5B3F00D3EEE4 /* DracTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A14B785D195C5B3F00D3EEE4 /* DracTheme.mp3 */; };
-		A14DA992195B048300198C6E /* btnini.png in Resources */ = {isa = PBXBuildFile; fileRef = A14DA991195B048300198C6E /* btnini.png */; };
 		A14DA994195B048C00198C6E /* btnres.png in Resources */ = {isa = PBXBuildFile; fileRef = A14DA993195B048C00198C6E /* btnres.png */; };
 		A19B2C571948947400483981 /* 613354.png in Resources */ = {isa = PBXBuildFile; fileRef = A19B2C561948947400483981 /* 613354.png */; };
 		A1CA97B5194F250E0088DD35 /* DracMod2PS.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CA97B4194F250E0088DD35 /* DracMod2PS.png */; };
@@ -80,7 +79,6 @@
 		A14B7857195C54AB00D3EEE4 /* Pedra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pedra.png; sourceTree = "<group>"; };
 		A14B7859195C5A0700D3EEE4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A14B785D195C5B3F00D3EEE4 /* DracTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DracTheme.mp3; sourceTree = "<group>"; };
-		A14DA991195B048300198C6E /* btnini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnini.png; sourceTree = "<group>"; };
 		A14DA993195B048C00198C6E /* btnres.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnres.png; sourceTree = "<group>"; };
 		A19B2C561948947400483981 /* 613354.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 613354.png; sourceTree = "<group>"; };
 		A1CA97B4194F250E0088DD35 /* DracMod2PS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DracMod2PS.png; sourceTree = "<group>"; };
@@ -210,7 +208,6 @@
 			children = (
 				A14B7857195C54AB00D3EEE4 /* Pedra.png */,
 				A14DA993195B048C00198C6E /* btnres.png */,
-				A14DA991195B048300198C6E /* btnini.png */,
 				A1F116711959B3CA00817B75 /* diamante2.png */,
 				A12E67161950769900D62BF2 /* Vida.png */,
 				A12E67141950760C00D62BF2 /* flecha.png */,
@@ -300,7 +297,6 @@
 				A14B7858195C54AB00D3EEE4 /* Pedra.png in Resources */,
 				A12E67171950769900D62BF2 /* Vida.png in Resources */,
 				A1F116721959B3CA00817B75 /* diamante2.png in Resources */,
-				A14DA992195B048300198C6E /* btnini.png in Resources */,
 				A14B785E195C5B3F00D3EEE4 /* DracTheme.mp3 in Resources */,
 				A14DA994195B048C00198C6E /* btnres.png in Resources */,
 				A12E67151950760C00D62BF2 /* flecha.png in Resources */,

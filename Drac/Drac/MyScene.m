@@ -57,14 +57,14 @@
         self.EsqLabel = [SKLabelNode labelNodeWithFontNamed:@"MarkerFelt-Wide"];
         self.EsqLabel.fontSize = 10;
         self.EsqLabel.fontColor = [UIColor blackColor];
-        self.EsqLabel.position = CGPointMake(self.size.width - 350, self.size.height - 210);
+        self.EsqLabel.position = CGPointMake(self.size.width/4, self.size.height - 210);
         self.EsqLabel.text = @"Toque deste lado da tela";
         [self addChild:self.EsqLabel];
         
         self.EsqLabel2 = [SKLabelNode labelNodeWithFontNamed:@"MarkerFelt-Wide"];
         self.EsqLabel2.fontSize = 10;
         self.EsqLabel2.fontColor = [UIColor blackColor];
-        self.EsqLabel2.position = CGPointMake(self.size.width - 350, self.size.height - 230);
+        self.EsqLabel2.position = CGPointMake(self.size.width/4, self.size.height - 230);
         self.EsqLabel2.text = @"para o Drac descer";
         [self addChild:self.EsqLabel2];
 
@@ -98,7 +98,6 @@
         self.musica = [[AVAudioPlayer alloc]initWithContentsOfURL:urlMusica error:nil];
         self.musica.numberOfLoops = -1;
         [self.musica prepareToPlay];
-        [self.musica play];
         
     }
     return self;
@@ -146,6 +145,9 @@
             [self CriarDragao];
             [self criarCoracao];
             [self criarPontuacaoTela];
+            
+            //inicia a musica
+            [self.musica play];
         }
         
         self.iniciarJogo = YES;
@@ -263,21 +265,21 @@
 -(void)criarCoracao
 {
     
-    //comeca com 3 de vida
+    //comeca com 3 de vida (-450  -432  -414)
     self.vida = 3;
     //Criar coracoes de vida na tela
     self.coracao1 = [SKSpriteNode spriteNodeWithImageNamed:@"Vida.png"];
-    self.coracao1.position = CGPointMake(self.size.width -450, self.size.height - 30);
+    self.coracao1.position = CGPointMake(self.size.width/30, self.size.height - 30);
     [self.coracao1 setSize:CGSizeMake(15.0f, 15.0f)];
     [self addChild:self.coracao1];
     
     self.coracao2 = [SKSpriteNode spriteNodeWithImageNamed:@"Vida.png"];
-    self.coracao2.position = CGPointMake(self.size.width -432, self.size.height - 30);
+    self.coracao2.position = CGPointMake(self.size.width/15, self.size.height - 30);
     [self.coracao2 setSize:CGSizeMake(15.0f, 15.0f)];
     [self addChild:self.coracao2];
     
     self.coracao3 = [SKSpriteNode spriteNodeWithImageNamed:@"Vida.png"];
-    self.coracao3.position = CGPointMake(self.size.width -414, self.size.height - 30);
+    self.coracao3.position = CGPointMake(self.size.width/10, self.size.height - 30);
     [self.coracao3 setSize:CGSizeMake(15.0f, 15.0f)];
     [self addChild:self.coracao3];
 
